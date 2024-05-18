@@ -92,3 +92,15 @@ button {
   text-align: center;
   border-radius: 20px;
 }
+
+.result {
+  margin-top: 20px;
+  color:white;
+  font-size: 20px;
+  background-color: #032600;
+  width:300px;
+  height:30px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+}

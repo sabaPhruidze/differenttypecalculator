@@ -5,6 +5,7 @@ function App() {
   const [mricxveli, setMricxveli] = useState<string>("");
   const [erteuli, setErteuli] = useState<string>("");
   const [result, setResult] = useState<string>("");
+  const [showBtn, setshowBtn] = useState<boolean>(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const text = event.target.value;
@@ -20,7 +21,7 @@ function App() {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const number = event.target.value;
-    const regex = /^\d+(?:,\d+)*$/;
+    const regex = /^(\d+(?:, \d+)*)?$/;
     if (regex.test(number)) {
       setMricxveli(number);
     } else {
@@ -46,9 +47,12 @@ function App() {
         failedCount++;
       }
     });
-    const positiveResult = succeededCount > 0 ? `+ ${succeededCount}` : "";
-    const negativeResult = failedCount > 0 ? `- ${failedCount}` : "";
-    setResult(`${positiveResult} ${negativeResult}`.trim());
+    const positiveResult = succeededCount >= 0 ? `${succeededCount}` : "";
+    const negativeResult = failedCount >= 0 ? `${failedCount}` : "";
+    setResult(
+      `ემთხვევა ${positiveResult} | არ ემთხვევა ${negativeResult}`.trim()
+    );
+    setshowBtn(true);
   };
 
   return (
@@ -71,7 +75,14 @@ function App() {
         />
       </div>
       <button onClick={handleButtonClick}>შედარება</button>
-      <div>{result}</div>
+      {result &&
+      mricxveli !== "" &&
+      erteuli.split(", ")[0] !== "" &&
+      showBtn ? (
+        <div className="result">{result}</div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
