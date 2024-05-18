@@ -6,7 +6,7 @@ function App() {
   const [erteuli, setErteuli] = useState<string>("");
   const [result, setResult] = useState<string>("");
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const text = event.target.value;
     const regex = /^(?:\d+,\s*)*\d+(?:,\s*)?$/;
     if (regex.test(text)) {
@@ -20,7 +20,7 @@ function App() {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const number = event.target.value;
-    const regex = /^[0-9]+(?:,[0-9]+)*$/;
+    const regex = /^\d+(?:,\d+)*$/;
     if (regex.test(number)) {
       setMricxveli(number);
     } else {
@@ -33,17 +33,15 @@ function App() {
     let succeededCount = 0;
     let failedCount = 0;
     pairs.forEach((eachNumber) => {
-      if (eachNumber == mricxveli) {
+      if (eachNumber === mricxveli) {
         succeededCount++;
       } else {
         failedCount++;
       }
     });
-
     const positiveResult = succeededCount > 0 ? `+ ${succeededCount}` : "";
     const negativeResult = failedCount > 0 ? `- ${failedCount}` : "";
-
-    return setResult(`${positiveResult} ${negativeResult}`.trim());
+    setResult(`${positiveResult} ${negativeResult}`.trim());
   };
 
   return (
@@ -51,19 +49,18 @@ function App() {
       <div className="mricxveliContainer">
         <text>მრიცხველი</text>
         <input
-          type="number"
+          type="text"
           value={mricxveli}
           onChange={handleMricxveliChange}
           placeholder="ჩაწერე"
         />
       </div>
-      <div>
+      <div className="mnishveliContainer">
         <text>წინა ერთეულები</text>
-        <input
-          type="text"
+        <textarea
           value={erteuli}
           onChange={handleInputChange}
-          placeholder="Enter numbers separated by a comma and exactly one space, with an optional trailing comma and optional space"
+          placeholder="34, 54, 54...."
         />
       </div>
       <button onClick={handleButtonClick}>Compare</button>
