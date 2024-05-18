@@ -12,6 +12,7 @@ function App() {
     const regex = /^(?:\d+,\s*)*\d+(?:,\s*)?$/;
     if (regex.test(text)) {
       setErteuli(text);
+      setshowBtn(false);
     } else {
       console.log("Invalid input");
     }
@@ -21,9 +22,10 @@ function App() {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const number = event.target.value;
-    const regex = /^(\d+(?:, \d+)*)?$/;
+    const regex = /^\d+(, \d+)*$/;
     if (regex.test(number)) {
       setMricxveli(number);
+      setshowBtn(false);
     } else {
       console.log("Invalid input");
     }
