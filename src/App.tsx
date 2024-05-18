@@ -32,9 +32,16 @@ function App() {
     const pairs = erteuli.split(", ");
     let succeededCount = 0;
     let failedCount = 0;
+
     pairs.forEach((eachNumber) => {
       if (eachNumber === mricxveli) {
         succeededCount++;
+      } else if (
+        eachNumber === mricxveli &&
+        eachNumber !== "" &&
+        mricxveli !== ""
+      ) {
+        return "";
       } else {
         failedCount++;
       }
@@ -63,7 +70,7 @@ function App() {
           placeholder="34, 54, 54...."
         />
       </div>
-      <button onClick={handleButtonClick}>Compare</button>
+      <button onClick={handleButtonClick}>შედარება</button>
       <div>{result}</div>
     </div>
   );
