@@ -33,13 +33,10 @@ function App() {
     let succeededCount = 0;
     let failedCount = 0;
     pairs.forEach((eachNumber) => {
-      console.log(eachNumber);
       if (eachNumber == mricxveli) {
         succeededCount++;
-        console.log(succeededCount);
       } else {
         failedCount++;
-        console.log(failedCount);
       }
     });
 
@@ -51,16 +48,16 @@ function App() {
 
   return (
     <div className="container">
-      <div className="erteuli">
+      <div className="mricxveliContainer">
         <text>მრიცხველი</text>
         <input
           type="number"
           value={mricxveli}
           onChange={handleMricxveliChange}
-          placeholder="Enter a number"
+          placeholder="ჩაწერე"
         />
       </div>
-      <div className="erteuli">
+      <div>
         <text>წინა ერთეულები</text>
         <input
           type="text"
